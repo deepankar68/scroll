@@ -31,7 +31,6 @@ gsap.from('.box', {
     rotate:360,
     scrollTrigger:{
         trigger:'.box',
-        markers:true,
         scroller:'body',
         scrub:1
 
