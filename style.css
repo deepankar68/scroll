@@ -1,23 +1,4 @@
-::-webkit-scrollbar {
-  width: 8px;
-  height: auto;
-}
-
-::-webkit-scrollbar-track {
-  background: #000000;
-}
-
-::-webkit-scrollbar-thumb {
-  cursor: pointer;
-  background: #555;
-  border-radius: 6px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  cursor: pointer;
-  background: rgb(66, 66, 66);
-}
-
+/* General Styles */
 * {
   padding: 0;
   margin: 0;
@@ -25,15 +6,17 @@
   font-family: sans-serif;
   font-weight: 400;
   font-style: normal;
+  box-sizing: border-box; /* Include padding and border in element's total width/height */
+}
+
+body {
+  background-color: #000;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 .page {
   height: 100vh;
   width: 100%;
-}
-
-body {
-  background-color: #000;
 }
 
 nav {
@@ -50,7 +33,6 @@ nav h2 {
 }
 
 .menu {
-  margin-left: auto;
   display: flex;
   align-items: center;
   gap: 30px;
@@ -68,7 +50,6 @@ nav h2 {
 
 .menu h4:hover {
   color: rgb(182, 180, 180);
-
 }
 
 button {
@@ -92,40 +73,32 @@ button:hover {
   box-shadow: 0 0 30px 5px rgba(0, 142, 236, 0.815);
 }
 
-button:hover::before {
-  -webkit-animation: sh02 0.5s 0s linear;
-  -moz-animation: sh02 0.5s 0s linear;
-  animation: sh02 0.5s 0s linear;
-}
-
 button::before {
   content: '';
   display: block;
-  width: 0px;
+  width: 0;
   height: 86%;
   position: absolute;
   top: 7%;
-  left: 0%;
+  left: 0;
   opacity: 0;
   background: #fff;
   box-shadow: 0 0 50px 30px #fff;
-  -webkit-transform: skewX(-20deg);
-  -moz-transform: skewX(-20deg);
-  -ms-transform: skewX(-20deg);
-  -o-transform: skewX(-20deg);
   transform: skewX(-20deg);
+}
+
+button:hover::before {
+  animation: sh02 0.5s 0s linear;
 }
 
 @keyframes sh02 {
   from {
     opacity: 0;
-    left: 0%;
+    left: 0;
   }
-
   50% {
     opacity: 1;
   }
-
   to {
     opacity: 0;
     left: 100%;
@@ -136,9 +109,8 @@ button:active {
   box-shadow: 0 0 0 0 transparent;
 }
 
-
 .text {
-  margin: 0 1.5em
+  margin: 0 1.5em;
 }
 
 h1 {
@@ -146,26 +118,26 @@ h1 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 100px;
+  font-size: 8vw; /* Responsive font size */
   white-space: nowrap;
 }
 
-
-/* page2 */
+/* Page2 */
 #page2 {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
-
 
 .border {
   background-image: linear-gradient(to left, red, blue);
-  width: 300px;
-  height: 300px;
+  width: 80vw;
+  max-width: 300px; /* Limit maximum size */
+  height: 80vw;
+  max-height: 300px;
   border-radius: 20px;
+  position: relative; /* Make it relative for pseudo-element */
 }
 
 .border::before {
@@ -173,17 +145,65 @@ h1 {
   content: "";
   position: absolute;
   z-index: -1;
-  height: 300px;
-  width: 300px;
-  scale: 1.1;
+  height: 100%;
+  width: 100%;
+  transform: scale(1.1);
   filter: blur(25px);
   border-radius: 100px;
 }
 
 .content {
   background-color: #111;
-  width: 300px;
-  height: 300px;
+  width: 100%;
+  height: 100%;
   border-radius: 19px;
-  scale: 0.9;
+  transform: scale(0.9);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: auto;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  background: #555;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  cursor: pointer;
+  background: rgb(66, 66, 66);
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  nav {
+   
+
+  }
+
+  .menu h4 {
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 480px) {
+  nav h2 {
+    font-size: 16px;
+  }
+
+  .menu button {
+    font-size: 12px;
+  }
+
+  .border, .border::before, .content {
+    width: 90vw;
+    height: 90vw;
+  }
 }
